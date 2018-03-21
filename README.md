@@ -1,1 +1,1 @@
-# MK61-calc
+# Emulator of "Электроника MK 61" programmable calculator
