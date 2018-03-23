@@ -1,7 +1,7 @@
 import {angleUnits, power} from "./constants";
 
 const initState = {
-  screen: '',
+  screen: 's0ssssssssss',
   power: power.OFF,
   angleUnitsSwither: angleUnits.DEG,
   stack: [],
@@ -10,7 +10,7 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-  return {}
+  return Object.assign({}, initState)
 }
 
 export default rootReducer;

@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Screen extends Component {
-  render() {
-    return (
-      <div>
-        There is screen block
-      </div>
-    );
-  }
+function Screen(props) {
+  return (
+    <div>
+      {props.value}
+    </div>
+  );
 }
 
 export default Screen;
