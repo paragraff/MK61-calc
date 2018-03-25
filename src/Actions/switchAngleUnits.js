@@ -1,0 +1,1 @@
+export const switchAngleUnits = (position) => ({type: 'POWER_ON', payload: position})

@@ -1,16 +1,14 @@
-import {angleUnits, power} from "./constants";
+import {powerOffState} from "./constants";
 
-const initState = {
-  screen: 's0ssssssssss',
-  power: power.OFF,
-  angleUnitsSwither: angleUnits.DEG,
-  stack: [],
-  memory: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  program: [],
+const rootReducer = (state = powerOffState, action) => {
+  const newState = reducers.reduce((currState, reducer) => (reducer(currState, action)), state)
+  return newState
 }
 
-const rootReducer = (state = initState, action) => {
-  return Object.assign({}, initState)
+let reducers = [];
+
+rootReducer.register = function (reducer) {
+  reducers.push(reducer);
 }
 
 export default rootReducer;

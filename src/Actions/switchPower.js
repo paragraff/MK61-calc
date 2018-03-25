@@ -1,0 +1,1 @@
+export const power = (position) => ({type: 'SWITCH_POWER', payload: position})
