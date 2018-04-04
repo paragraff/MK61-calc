@@ -23,6 +23,14 @@ class IR2 {
     }
 
   }
+
+  set in (value) {
+    this.in = value
+  }
+
+  get out () {
+    return this.out
+  }
 }
 
 export default IR2;

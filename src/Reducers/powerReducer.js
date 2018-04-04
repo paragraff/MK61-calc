@@ -1,5 +1,4 @@
 import {power, powerOnState, powerOffState} from '../constants'
-import reducer from '../reducer'
 
 const powerReducer = (state, action) => {
   let resultState
@@ -10,7 +9,5 @@ const powerReducer = (state, action) => {
   }
   return resultState
 };
-
-reducer.register(powerReducer)
 
 export default powerReducer

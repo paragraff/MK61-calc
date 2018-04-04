@@ -1,1 +1,1 @@
-export const switchAngleUnits = (position) => ({type: 'POWER_ON', payload: position})
+export const switchAngleUnits = (position) => ({type: 'SWITCH_ANGLE_MODE', payload: position})

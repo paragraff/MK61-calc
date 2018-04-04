@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import './App.css';
+import './App.css'
+import {updateScreen} from './Actions/updateScreen'
 
 import Screen from './Screen'
 import Buttons from './Buttons'

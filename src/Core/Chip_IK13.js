@@ -36,7 +36,7 @@ class IK13 {
     this.codeY = 0
     this.dot = 0
 
-    this.clearScreen = false;
+    this.screenShouldUpdate = false;
 
     this.dots = [];
     for (let i = 0; i < 14; i++) {
@@ -159,7 +159,7 @@ class IK13 {
 
       this.dots[tick3] = this.L > 0;
 
-      this.clearScreen = true;
+      this.screenShouldUpdate = true;
 
     }
 
@@ -275,6 +275,15 @@ class IK13 {
     if (this.tickCount > 41) {
       this.tickCount = 0;
     }
+  }
+
+  setMByTick (value) {
+    this.M[(this.tickCount + 41) % 42] = value
+  }
+
+  buttonPressed (x, y) {
+    this.codeX = x
+    this.codeY = y
   }
 }
 export default IK13

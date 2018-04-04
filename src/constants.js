@@ -1,7 +1,7 @@
 const angleUnits = {
-  'DEG': 0,
-  'RAD': 1,
-  'GON': 2,
+  'DEG': 11,
+  'RAD': 10,
+  'GON': 12,
 }
 
 const power = {
