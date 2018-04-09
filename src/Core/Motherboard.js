@@ -1,18 +1,11 @@
 import {memoryPages, memoryPageOffsets, stackPages, stackPageOffests, returnPages, commandPointerAddress, screenSymbols} from './core_constants'
-import {updateScreen} from '../Actions/updateScreen'
 
 class Motherboard {
   constructor (factory, firmware1302, firmware1303, firmware1306) {
-    // create chip instances
-    this.IK1302 = factory.createIK13(firmware1302)
-    this.IK1303 = factory.createIK13(firmware1303)
-    this.IK1306 = factory.createIK13(firmware1306)
-    this.IR21 = factory.createIR2()
-    this.IR22 = factory.createIR2()
-
-    this.screen = []
-    this.dotScreen = []
-    this.oldScreen = []
+    this.firmware1302 = firmware1302
+    this.firmware1303 = firmware1303
+    this.firmware1306 = firmware1306
+    this.chipFactory = factory
   }
 
   tick () {
@@ -81,7 +74,7 @@ class Motherboard {
     }
 
     if (update) {
-      this.updateScreen()
+      this.screenHandler(this.screen, this.dotScreen, true)
     }
 
     this.IK1302.buttonPressed(0, 0);
@@ -99,24 +92,39 @@ class Motherboard {
     for (let i = 0; i < 15; i++) {
       memory[i] = privateReadMemory(memoryPages[memoryPageOffsets[offset][i]][0], memoryPages[memoryPageOffsets[offset][i]][1] - 8);
     }
+    const memoryChange = _hasDiff(memory, this.oldMemory)
 
     let stack = []
     for (let i = 0; i < 5; i++) {
       stack[i] = privateReadMemory(stackPages[stackPageOffests[offset][i]][0], stackPages[stackPageOffests[offset][i]][1]);
     }
+    const stackChange = _hasDiff(stack, this.oldStack)
 
     let commandPointer = screenSymbols[this.IK1302.R[commandPointerAddress]] + screenSymbols[this.IK1302.R[commandPointerAddress - 3]];
+    const commandPointerChange = commandPointer !== this.oldCommandPointer
 
     let stackReturns = []
     for (let i = 0; i < 5; i++) {
       stackReturns[i] = screenSymbols[this.IK1302.R[returnPages[i]]] + screenSymbols[this.IK1302.R[returnPages[i] - 3]];
     }
+    const returnsStackChange = _hasDiff(stackReturns, this.oldReturnStack)
+
+    const program = []
+    const programChange = _hasDiff(program, this.oldProgram)
+
+    if (memoryChange || stackChange || commandPointerChange || returnsStackChange || programChange) {
+      this.memoryHandler(memory, stack, commandPointer, stackReturns, program)
+      this.oldMemory = memory
+      this.oldStack = stack
+      this.oldCommandPointer = commandPointer
+      this.oldReturnStack = stackReturns
+      this.oldProgram = program
+    }
 
   }
 
   pressButton (x, y) {
-    this.IK1302.codeX = x;
-    this.IK1302.codeY = y;
+    this.IK1302.buttonPressed(x, y)
     this.step()
   }
 
@@ -124,18 +132,43 @@ class Motherboard {
     this.angleUnits = value;
   }
 
-  updateScreen () {
-    // send action with screen values
-    updateScreen(this.screen, this.dotScreen, true)
+  turnOn (screenHandler, memoryHandler) {
+    this.screenHandler = screenHandler
+    this.memoryHandler = memoryHandler
 
-    // code below should blink the screen
-    // if (режим_счёта != (ИК1302.запятая == 11)) {
-    //
-    //   Изменить_яркость(режим_счёта);
-    //
-    //   режим_счёта = !режим_счёта;
-    //
-    // }
+    // create chip instances
+    this.IK1302 = this.chipFactory.createIK13(this.firmware1302)
+    this.IK1303 = this.chipFactory.createIK13(this.firmware1303)
+    this.IK1306 = this.chipFactory.createIK13(this.firmware1306)
+    this.IR21 = this.chipFactory.createIR2()
+    this.IR22 = this.chipFactory.createIR2()
+
+    this.screen = []
+    this.oldScreen = []
+    this.dotScreen = []
+    this.oldMemory = []
+    this.oldStack = []
+    this.oldReturnStack = []
+    this.oldProgram = []
+    this.oldCommandPointer = 0
+
+    // start executing
+    this.timer = setInterval(this.step.bind(this), 300)
+    this.step();
+  }
+
+  turnOff () {
+    clearInterval(this.timer)
+
+    this.screen = []
+    this.dotScreen = []
+    this.oldScreen = []
+    this.IK1302 = null
+    this.IK1303 = null
+    this.IK1306 = null
+    this.IR21 = null
+    this.IR22 = null
+    this.screenHandler(this.screen, this.dotScreen, true)
   }
 }
 
@@ -219,6 +252,10 @@ function _readFromMemory(chip, memoryAddress) {
   }
 
   return result;
+}
+
+function _hasDiff(arr1, arr2) {
+  return arr1.some((value, index) => value !== arr2[index])
 }
 
 export default Motherboard

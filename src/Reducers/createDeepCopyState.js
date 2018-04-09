@@ -7,7 +7,7 @@ const createDeepCopyState = state => {
     stack: [].concat(state.stack),
     memory: [].concat(state.memory),
     program: [].concat(state.program),
-    mode: state.mode,
+    returnStack: state.returnStack,
     commandPointer: state.commandPointer,
   }
 }

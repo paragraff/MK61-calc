@@ -16,24 +16,26 @@ const mode = {
 }
 
 const powerOnState = {
+  lastButton: undefined,
   screen: '+0.dsdsdsdsdsdsds+dsds',
   power: power.ON,
   angleUnitsSwither: angleUnits.DEG,
   stack: [0, 0, 0, 0],
   memory: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   program: [],
-  mode: mode.AUTO,
+  returnStack: [],
   commandPointer: 0,
 }
 
 const powerOffState = {
+  lastButton: undefined,
   screen: '+dsdsdsdsdsdsdsds+dsds',
   power: power.OFF,
   angleUnitsSwither: angleUnits.RAD,
   stack: [],
   memory: [],
   program: [],
-  mode: mode.AUTO,
+  returnStack: [],
   commandPointer: 0,
 }
 

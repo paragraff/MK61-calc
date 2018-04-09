@@ -63,10 +63,10 @@ class IK13 {
     if (tick9 < 3) {
       this.ASP = this.memoryOfCommands[this.AK] & 0xff;
     } else if (tick9 === 3) {
-      this.ASP = this.memoryOfCommands[this.AK] >>> 8 & 0xff;
+      this.ASP = (this.memoryOfCommands[this.AK] >>> 8) & 0xff;
     } else if (tick9 === 4) {
 
-      this.ASP = this.memoryOfCommands[this.AK] >>> 16 & 0xff;
+      this.ASP = (this.memoryOfCommands[this.AK] >>> 16) & 0xff;
 
       if (this.ASP > 0x1f) {
 
@@ -83,7 +83,7 @@ class IK13 {
       }
     }
 
-    this.MOD = this.memoryOfCommands[this.AK] >>> 24 & 0xff;
+    this.MOD = (this.memoryOfCommands[this.AK] >>> 24) & 0xff;
 
     this.AMK = this.memoryOfSyncProgramms[this.ASP * 9 + unknownJ[this.tickCount]];
 
@@ -107,7 +107,7 @@ class IK13 {
 
     let alfa = 0, beta = 0, gamma = 0;
 
-    if ((this.microCommand >>> 25 & 1) > 0) {
+    if (((this.microCommand >>> 25) & 1) > 0) {
       if (tick3 !== this.codeX - 1) {
         this.S1 |= this.codeY;
       }
