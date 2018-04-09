@@ -1,3 +1,5 @@
+import {unknownJ} from "./core_constants"
+
 class IK13 {
   constructor (firmware) {
     this.memoryOfMicrocommands = [].concat(firmware.microCommands)
@@ -40,7 +42,7 @@ class IK13 {
 
     this.dots = [];
     for (let i = 0; i < 14; i++) {
-      this.dots = false;
+      this.dots[i] = false;
     }
 
   }
@@ -83,7 +85,7 @@ class IK13 {
 
     this.MOD = this.memoryOfCommands[this.AK] >>> 24 & 0xff;
 
-    this.AMK = this.memoryOfSyncProgramms[this.ASP * 9 + J[this.tickCount]];
+    this.AMK = this.memoryOfSyncProgramms[this.ASP * 9 + unknownJ[this.tickCount]];
 
     this.AMK = this.AMK & 0x3f;
 

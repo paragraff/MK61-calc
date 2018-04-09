@@ -1,11 +1,5 @@
-import MicroFactory from './MicroFactory'
-import {firmware1302, firmware1303, firmware1306} from './firmwares'
 import {memoryPages, memoryPageOffsets, stackPages, stackPageOffests, returnPages, commandPointerAddress, screenSymbols} from './core_constants'
-import updateScreen from '../Actions/updateScreen'
-
-// const factory = new MicroFactory()
-// const motherboard = Motherboard.createInstance(factory, firmware1302, firmware1303, firmware1306)
-// motherboard.changeAngleUnits(state.angleUnitsSwither)
+import {updateScreen} from '../Actions/updateScreen'
 
 class Motherboard {
   constructor (factory, firmware1302, firmware1303, firmware1306) {
@@ -19,9 +13,6 @@ class Motherboard {
     this.screen = []
     this.dotScreen = []
     this.oldScreen = []
-  }
-  static createInstance (factory, firmware1302, firmware1303, firmware1306) {
-    return new Motherboard(factory, firmware1302, firmware1303, firmware1306)
   }
 
   tick () {
@@ -118,7 +109,7 @@ class Motherboard {
 
     let stackReturns = []
     for (let i = 0; i < 5; i++) {
-      stackReturns[i] = screenSymbols[this.IK1302.R[returnPages[сч]]] + screenSymbols[this.IK1302.R[returnPages[сч] - 3]];
+      stackReturns[i] = screenSymbols[this.IK1302.R[returnPages[i]]] + screenSymbols[this.IK1302.R[returnPages[i] - 3]];
     }
 
   }
@@ -229,3 +220,5 @@ function _readFromMemory(chip, memoryAddress) {
 
   return result;
 }
+
+export default Motherboard

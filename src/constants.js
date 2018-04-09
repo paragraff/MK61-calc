@@ -29,7 +29,7 @@ const powerOnState = {
 const powerOffState = {
   screen: '+dsdsdsdsdsdsdsds+dsds',
   power: power.OFF,
-  angleUnitsSwither: angleUnits.DEG,
+  angleUnitsSwither: angleUnits.RAD,
   stack: [],
   memory: [],
   program: [],

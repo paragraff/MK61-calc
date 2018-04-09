@@ -1,4 +1,5 @@
 import {screenSymbols} from '../Core/core_constants'
+import createDeepCopyState from './createDeepCopyState'
 
 const screenReducer = (state, action) => {
   let resultState
@@ -29,16 +30,10 @@ const screenReducer = (state, action) => {
     }
     const screenString = resultScreen.join('')
 
-    resultState = {
-      screen: screenString,
-      power: state.power,
-      angleUnitsSwither: state.angleUnitsSwither,
-      stack: [].concat(state.stack),
-      memory: [].concat(state.memory),
-      program: [].concat(state.program),
-      mode: state.mode,
-      commandPointer: state.commandPointer,
-    }
+    resultState = createDeepCopyState(state)
+
+    resultState.screen = screenString
+
   } else {
     resultState = state
   }

@@ -25,9 +25,27 @@ const stackPageOffests = [
 
 const returnPages = [28, 22, 16, 10, 4]
 
+const unknownJ = [
+
+  0, 1, 2, 3, 4, 5,
+
+  3, 4, 5, 3, 4, 5,
+
+  3, 4, 5, 3, 4, 5,
+
+  3, 4, 5, 3, 4, 5,
+
+  6, 7, 8, 0, 1, 2,
+
+  3, 4, 5, 6, 7, 8,
+
+  0, 1, 2, 3, 4, 5
+
+]
+
 
 const commandPointerAddress = 34;
 
 const screenSymbols = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'L', 'C', 'R', 'E', ' ']
 
-export {memoryPages, memoryPageOffsets, stackPages, stackPageOffests, returnPages, commandPointerAddress, screenSymbols}
+export {memoryPages, memoryPageOffsets, stackPages, stackPageOffests, returnPages, unknownJ, commandPointerAddress, screenSymbols}

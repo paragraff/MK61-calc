@@ -1,0 +1,14 @@
+.switchers {
+  display: flex;
+}
+
+.buttons-row {
+  display: flex;
+}
+
+.button {
+  font-family: sans-serif;
+  width: 40px;
+  height: 30px;
+  margin: 4px 2px;
+}
