@@ -8,6 +8,8 @@ import Buttons from './Buttons/buttons'
 import {power as powerState} from './constants'
 
 import {updateScreen} from './Actions/updateScreen'
+import {updateMemory} from './Actions/updateMemory'
+import {command} from "./Actions/command";
 
 const mapStateToProps = state => {
   return {
@@ -21,7 +23,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     showScreen: (screen, dots, bright) => dispatch(updateScreen(screen, dots, bright)),
-    setMemory: (memory, stack, commandPointer, stackReturns, program) => {console.log('set memory', memory, stack, commandPointer, stackReturns, program)},
+    setMemory: (memory, stack, commandPointer, stackReturns, program) => dispatch(updateMemory(memory, stack, program, commandPointer, stackReturns)),
+    resetLastButton: () => dispatch(command(undefined))
   }
 }
 
@@ -47,6 +50,7 @@ class App extends Component {
     }
     if (lastButton && lastButton !== prevProps.lastButton && power === powerState.ON) {
       core.pressButton(lastButton.x, lastButton.y)
+      this.props.resetLastButton();
     }
   }
 
