@@ -1,5 +1,6 @@
 import {screenSymbols} from '../Core/core_constants'
 import createDeepCopyState from './createDeepCopyState'
+import {powerOffState} from "../constants";
 
 const screenReducer = (state, action) => {
   let resultState
@@ -22,13 +23,16 @@ const screenReducer = (state, action) => {
     }
     // set exponent sign
     resultScreen[17] = (digits[9] === minus ? '-' : '+');
-    resultScreen[18] = dots[10] ? '.' : 's'
     // set exponent
     for (let i = 10; i < 12; i++) {
-      resultScreen[i * 2 - 1] = (digits[i] === emptyDigit ? 'd' : digits[i])
-      resultScreen[i * 2] = dots[i] ? '.' : 's'
+      resultScreen[i * 2 - 2] = (digits[i] === emptyDigit ? 'd' : digits[i])
+      resultScreen[i * 2 - 1] = dots[i] ? '.' : 's'
     }
-    const screenString = resultScreen.join('')
+
+    let screenString = resultScreen.join('')
+    if (dots.length === 0 && digits.length === 0) {
+      screenString = powerOffState.screen
+    }
 
     resultState = createDeepCopyState(state)
 
