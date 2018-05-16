@@ -57,9 +57,9 @@ class App extends Component {
   render() {
     const {screen} = this.props;
     return (
-      <div>
-        <Screen value={screen}></Screen>
-        <Buttons></Buttons>
+      <div className="calc-case">
+        <div className="calc-screen"><Screen value={screen}></Screen></div>
+        <div className="calc-button"><Buttons className="calc-buttons"></Buttons></div>
       </div>
     );
   }
