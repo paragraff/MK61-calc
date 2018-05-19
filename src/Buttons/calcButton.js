@@ -12,7 +12,12 @@ class CalcButton extends Component {
   }
   render () {
     return (
-      <button className="button" onClick={this.props.onClick}>{this.value.text}</button>
+      <div className="button">
+        <div className="button-describe">sfds</div>
+        <div className="button-container">
+          <button className={this.props.color} onClick={this.props.onClick}>{this.value.text}</button>
+        </div>
+      </div>
     )
   }
 }

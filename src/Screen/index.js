@@ -24,7 +24,7 @@ function Screen(props) {
     return result;
   }, '')
   return (
-    <div dangerouslySetInnerHTML={{__html: resultScreen}}></div>
+    <div className={props.className} dangerouslySetInnerHTML={{__html: resultScreen}}></div>
   );
 }
 

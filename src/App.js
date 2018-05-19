@@ -58,8 +58,8 @@ class App extends Component {
     const {screen} = this.props;
     return (
       <div className="calc-case">
-        <div className="calc-screen"><Screen value={screen}></Screen></div>
-        <div className="calc-button"><Buttons className="calc-buttons"></Buttons></div>
+        <Screen className="calc-screen" value={screen}></Screen>
+        <Buttons className="calc-buttons"></Buttons>
       </div>
     );
   }

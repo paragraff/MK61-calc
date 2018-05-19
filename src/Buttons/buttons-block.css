@@ -1,0 +1,23 @@
+.buttons-block {
+  display: flex;
+  flex-direction: column;
+}
+.switchers {
+  flex: 1 1 25%;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 75%;
+}
+
+.buttons-row {
+  display: flex;
+  padding: 0 5%;
+  flex: 1 1 auto;
+  align-items: stretch;
+}
+
+.buttons-row .button {
+  flex: 1 1 100%;
+}

@@ -9,6 +9,7 @@ import CalcButton from './calcButton'
 import {angleUnits} from '../constants'
 import {ButtonColors} from "./button-colors"
 import './switchers.css'
+import  './buttons-block.css'
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -43,7 +44,7 @@ class Buttons extends Component {
     const power = this.props.power
     const angleUnitsState = this.props.angleUnits
     return (
-      <div>
+      <div className={`${this.props.className} buttons-block`}>
         <div className="switchers">
           <div className="power">
             <input type="checkbox" name="power" onChange={this.changePower} value={power}/>
