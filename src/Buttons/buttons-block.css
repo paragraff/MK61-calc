@@ -7,20 +7,25 @@
 }
 .buttons {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr) 0.3fr;
+  grid-template-rows: repeat(6, 1fr) 0.3fr;
   grid-row-gap: 0.1vw;
-  grid-column-gap: 0.75vw;
+  grid-column-gap: 0.1vw;
   flex: 1 1 75%;
 }
 
-.buttons-row {
-  display: flex;
-  padding: 0 5%;
-  flex: 1 1 auto;
-  align-items: stretch;
+.buttons .button {
+  flex: 1 1 100%;
+  padding: 0 0.3vw;
 }
 
-.buttons-row .button {
-  flex: 1 1 100%;
+.buttons .memory-cell {
+  text-align: center;
+  color: #EEEEEE;
+  font-size: 1.7vh;
+}
+
+.buttons .memory-cell.e {
+  text-align: left;
+  padding-top: 165%;
 }
