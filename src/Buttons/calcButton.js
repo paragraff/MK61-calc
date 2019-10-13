@@ -15,7 +15,10 @@ class CalcButton extends Component {
       <div className="button">
         <div className="button-describe">sfds</div>
         <div className="button-container">
-          <button className={this.props.color} onClick={this.props.onClick}>{this.value.text}</button>
+          <button className={`${this.props.color}`} onClick={this.props.onClick}>
+              <span>{this.value.up}</span>
+              <span>{this.value.text}</span>
+          </button>
         </div>
       </div>
     )
