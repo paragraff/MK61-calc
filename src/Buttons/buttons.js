@@ -6,21 +6,19 @@ import {switchAngleUnits} from "../Actions/switchAngleUnits"
 import {command} from '../Actions/command'
 import {power as powerState} from '../constants'
 import CalcButton from './calcButton'
+import PowerSwitcher from './powerSwitcher'
 import {angleUnits} from '../constants'
 import {ButtonColors} from "./button-colors"
-import './switchers.css'
 import  './buttons-block.css'
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPower: powerState => dispatch(powerAction(powerState)),
     setAngleUnits: angleUnit => dispatch(switchAngleUnits(angleUnit)),
     pressButton: buttonCode => dispatch(command(buttonCode)),
   };
 };
 const mapStateToProps = state => {
   return {
-    power: state.power,
     angleUnits: state.angleUnitsSwither
   }
 }
@@ -28,11 +26,7 @@ const mapStateToProps = state => {
 class Buttons extends Component {
   constructor(props) {
     super(props)
-    this.changePower = this.changePower.bind(this)
     this.changeAngleUnits = this.changeAngleUnits.bind(this)
-  }
-  changePower(event) {
-    this.props.setPower(event.target.checked ? powerState.ON : powerState.OFF)
   }
   changeAngleUnits(event) {
     this.props.setAngleUnits(parseInt(event.target.value, 10))
@@ -41,14 +35,11 @@ class Buttons extends Component {
     this.props.pressButton({x, y});
   }
   render() {
-    const power = this.props.power
     const angleUnitsState = this.props.angleUnits
     return (
       <div className={`${this.props.className} buttons-block`}>
         <div className="switchers">
-          <div className="power">
-            <input type="checkbox" name="power" onChange={this.changePower} value={power}/>
-          </div>
+          <PowerSwitcher />
           <div className="angle-units">
             <input type="radio"
                    name="angle-unit"

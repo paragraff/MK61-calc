@@ -1,0 +1,20 @@
+.power-switcher .on g {
+  transform: translateX(58px);
+}
+.power-switcher .off g {
+  transform: translateX(2px);
+}
+
+.power-switcher svg {
+  width: 5vh;
+  height: 2vh;
+  vertical-align: middle;
+}
+
+.power-switcher label {
+  line-height: 2vh;
+  font-size: 1.5vh;
+  color: #EEEEEE;
+  vertical-align: middle;
+  margin: 0 1vh;
+}
