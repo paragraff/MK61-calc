@@ -43,6 +43,11 @@
   word-spacing: -1px;
 }
 
+.button .button-describe .k p {
+  margin: 0;
+  line-height: 75%;
+}
+
 .button .button-describe .fn {
   color: #FFEB3B
 }

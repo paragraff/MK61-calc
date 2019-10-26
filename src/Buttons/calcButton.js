@@ -11,8 +11,12 @@ class CalcButton extends Component {
     this.color = props.color
   }
   render () {
-    const functionalValue = this.functionalValue !== undefined ? <div className='fn'>{this.functionalValue.text}</div> : ''
-    const extendValue = this.extendValue !== undefined ? <div className='k'>{this.extendValue.text}</div> : ''
+    const functionalValue = this.functionalValue !== undefined ?
+      <div className='fn'>{this.functionalValue.text}<sup>{this.functionalValue.exp}</sup></div> :
+      ''
+    const extendValue = this.extendValue !== undefined ?
+      <div className='k'><p>{this.extendValue.up}</p><p>{this.extendValue.text}</p></div> :
+      ''
     return (
       <div className={`button ${this.memoryCell ? 'memory' : ''} ${this.memoryCell === 'e' ? 'right' : ''}`}>
         <div className="button-describe">
