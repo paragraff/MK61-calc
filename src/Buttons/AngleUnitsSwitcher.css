@@ -1,0 +1,31 @@
+.angle-units-switcher {
+  width: 12vh;
+}
+.angle-units-switcher div {
+  text-align: center;
+}
+.angle-units-switcher svg {
+  width: 6vh;
+  height: 2vh;
+  vertical-align: middle;
+}
+
+.angle-units-switcher svg.rad g {
+  transform: translateX(2px);
+}
+
+.angle-units-switcher svg.gon g {
+  transform: translateX(35px);
+}
+
+.angle-units-switcher svg.deg g {
+  transform: translateX(68px);
+}
+
+.angle-units-switcher label {
+  line-height: 2vh;
+  font-size: 1.5vh;
+  color: #EEEEEE;
+  vertical-align: middle;
+  margin: 0 1vh;
+}

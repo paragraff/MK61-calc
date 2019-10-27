@@ -1,35 +1,23 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import {power as powerAction} from '../Actions/switchPower'
-import {switchAngleUnits} from "../Actions/switchAngleUnits"
 import {command} from '../Actions/command'
-import {power as powerState} from '../constants'
 import CalcButton from './calcButton'
 import PowerSwitcher from './powerSwitcher'
+import AngleUnitsSwitcher from "./AngleUnitsSwitcher";
 import {angleUnits} from '../constants'
 import {ButtonColors} from "./button-colors"
 import  './buttons-block.css'
 
 const mapDispatchToProps = dispatch => {
   return {
-    setAngleUnits: angleUnit => dispatch(switchAngleUnits(angleUnit)),
     pressButton: buttonCode => dispatch(command(buttonCode)),
   };
-};
-const mapStateToProps = state => {
-  return {
-    angleUnits: state.angleUnitsSwither
-  }
 }
 
 class Buttons extends Component {
   constructor(props) {
     super(props)
-    this.changeAngleUnits = this.changeAngleUnits.bind(this)
-  }
-  changeAngleUnits(event) {
-    this.props.setAngleUnits(parseInt(event.target.value, 10))
   }
   pressButton(x, y, event) {
     this.props.pressButton({x, y});
@@ -40,26 +28,7 @@ class Buttons extends Component {
       <div className={`${this.props.className} buttons-block`}>
         <div className="switchers">
           <PowerSwitcher />
-          <div className="angle-units">
-            <input type="radio"
-                   name="angle-unit"
-                   value={angleUnits.RAD}
-                   onChange={this.changeAngleUnits}
-                   checked={angleUnitsState === angleUnits.RAD}
-            />
-            <input type="radio"
-                   name="angle-unit"
-                   value={angleUnits.GON}
-                   onChange={this.changeAngleUnits}
-                   checked={angleUnitsState === angleUnits.GON}
-            />
-            <input type="radio"
-                   name="angle-unit"
-                   value={angleUnits.DEG}
-                   onChange={this.changeAngleUnits}
-                   checked={angleUnitsState === angleUnits.DEG}
-            />
-          </div>
+          <AngleUnitsSwitcher />
         </div>
         <div className="buttons">
           <CalcButton onClick={this.pressButton.bind(this, 11, 9)} value={{text: 'F'}} color={ButtonColors.YELLOW} />
@@ -117,4 +86,4 @@ class Buttons extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
+export default connect(null, mapDispatchToProps)(Buttons);
