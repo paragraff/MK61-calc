@@ -1,4 +1,5 @@
 import React from 'react';
+import './screen.css';
 
 function Screen(props) {
   const sign = props.value[0]

@@ -19,7 +19,7 @@ const powerOnState = {
   lastButton: undefined,
   screen: '+0.dsdsdsdsdsdsds+dsds',
   power: power.ON,
-  angleUnitsSwither: angleUnits.DEG,
+  angleUnitsSwither: angleUnits.RAD,
   stack: [0, 0, 0, 0],
   memory: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   program: [],
