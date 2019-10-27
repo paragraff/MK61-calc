@@ -25,7 +25,7 @@ class Motherboard {
   }
 
   step () {
-    this.IK1303.buttonPressed(1, this.angleUnits)
+    this.IK1303.buttonPressed(this.angleUnits, 1)
 
     for (let i = 1; i <= 560; i++) {
 
